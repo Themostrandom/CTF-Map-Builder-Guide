@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Map Builder Guide</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --bg-light: #ffffff;
+            --text-light: #000000;
+            --bg-dark: #1a1a1a;
+            --text-dark: #f5f5f5;
+            --padding: 15px;
+            --margin-top: 1px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .light-mode {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary-color);
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .tabs button, .toggle-mode {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            margin: 0 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .tabs button:hover, .toggle-mode:hover {
+            text-decoration: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content button {
+            color: black;
+            padding: 10px;
+            text-align: left;
+            width: 100%;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content button:hover {
+            background: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .toggle-mode {
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: var(--padding);
+            display: flex;
+            flex-wrap: wrap;
+			margin-right: 50px;
+        }
+
+        .content {
+            display: none;
+            width: 100%;
+            padding: var(--padding);
+            margin-top: var(--margin-top);
+			margin-right: 50px;
+        }
+
+        .content.active {
+            display: block;
+        }
+		.home-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			width: 100%;
+		}
+
+		.text-content {
+			width: 100%; /* Ajuste la largeur du texte */
+			padding: var(--padding);
+		}
+
+		.image-content {
+			width: 35%; /* Ajuste la largeur de l'image */
+			text-align: right;
+			padding: 10px;
+			margin-right:50px;
+		}
+
+		.image-content img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 10px;
+		}
+
+        .image-content2 {
+            width: 45%;
+            text-align: right;
+            padding: 20px;
+        }
+
+        .image-content2 img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+		.link {
+			text-decoration:none;
+			color: blue;
+		}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="tabs">
+            <button onclick="showTab('home')">Home</button>
+            <button onclick="showTab('about')">Capture The Flag</button>
+			<button onclick="showTab('map')">Map making</button>
+            <button onclick="showTab('advice')">Advice</button>
+            <div class="dropdown">
+                <button>Mods ▼</button>
+                <div class="dropdown-content">
+                    <button onclick="showTab('service1')">Worldedit</button>
+                    <button onclick="showTab('service2')">Worldedit Undo</button>
+                    <button onclick="showTab('service3')">Worldedit Additions</button>
+					<button onclick="showTab('service4')">Worldedit HUD Helper</button>
+                    <button onclick="showTab('service5')">Terraform</button>
+                </div>
+            </div>
+        </div>
+        <button class="toggle-mode" onclick="toggleMode()">☀️ Mode Clair</button>
+    </nav>
+    <div id="home" class="content">
+        <div class="home-content">
+            <div class="text-content">
+                <h1>CTF (Capture The Flag) game 🏴‍☠️</h1>
+                <p>CTF is a competitive and strategic game mode 🧠🎯 where two teams compete to capture the opposing flag 🚩 <br>While defending their own. It requires thought, cooperation and speed 🏃‍♂️💨.</p>
+                <h2>Why create a CTF map? 🏗️🎨</h2>
+                <p>🔹 🛠️ Balance & Strategy - A good map should offer varied paths, strong defensive zones <br>🏰 and strategic locations to prevent the game becoming too unbalanced ⚖️.</p>
+                <p>🔹 🔥 Unique experience - By designing an original map, you can offer new game dynamics <br>💡 and surprise players with innovative mechanics 🔄.</p>
+                <p>🔹 🎭 Immersion & Fun - A well-designed map with a captivating theme 🏜️🏙️ <br>and a well-thought-out design makes the game experience even more engaging and fun 😃.</p>
+                <p>🔹 💎 Customisation & Creativity - Creating a map is also about expressing your vision <br>🎨 by adding decorative elements, obstacles and fine-tuning every detail for a positive✨ experience.</p>
+                <p>🔹 🏆 A challenge for players! - A well-designed map offers moments of intensity and competition <br>🔥, pushing players to give their best 💪to combat the opposing team.</p>
+                <p>🔹 👉 In short, creating a CTF map means shaping a unique playing field for a competitive <br>and immersive experience 🎮.</p>
+            </div>
+            <div class="image-content">
+                <img src="image.png" alt="CTF Map Example">
+            </div>
+        </div>
+    </div>
+    <div id="about" class="content">
+        <div class="text-content">
+            <h1>Capture The Flag</h1>
+            <h2>You can download capture the flag from minetest:</h2>
+            <p>Go to ‘Content’ then ‘Browse online content’ then search for ‘Capture The Flag’. Click on ‘Capture The Flag by rubenwardy’ and Install</p>
+        </div>
+			<div class="image-content2">
+				<img src="download.png" alt="CTF Map dowload">
+			</div>
+		<div class="text-content">
+			<h2>You can also visit the Capture The Flag github: <a href="https://github.com/MT-CTF/capturetheflag" target="_blank" class="link">Clic here</a></h2>
+			<p>Go to the URL above and click on ‘code’ then download ZIP. Go to your downloads, right click on the folder click on unzip then put the folder in minetest or luanti/games, <br>you also need to install 4 other dependencies: <br>
+			<br>🔹mhud - <a href=https://github.com/LoneWolfHT/mhud/tree/056dbfbe71e232927410c1b4d5d3cdfbdc8a74a3 target="_blank" class="link">Github mhud</a>
+			<br>🔹rawf - <a href=https://github.com/LoneWolfHT/rawf/tree/4f2d7f3507be3e7c7465f9a05b76fb8c06682bd9 target="_blank" class="link">Github rawf</a>
+			<br>🔹ChatCmdBuilder - <a href=https://github.com/rubenwardy/ChatCmdBuilder/tree/be3906e1fbd21f5c3149309c831b1a92769d3f93 target="_blank" class="link">Github ChatCmdBuilder</a>
+			<br>🔹skybox - <a href=https://github.com/MT-CTF/skybox/tree/ab87534a3f333214ef484767f30c0b0f34759f41 target="_blank" class="link">Github skybox</a>
+			<br>🔹maps - <a href=https://github.com/MT-CTF/maps target="_blank" class="link">Github maps</a>
+			<br><br>Once downloaded like Capture the Flag, you need to unzip them and put them in: <br>
+			<br><code>🔹minetest or luanti/games/capturetheflag/mods/other </code>for the ChatCmdBuilder and skybox folder.
+			<br><code>🔹minetest or luanti/games/capturetheflag/mods/apis </code>for rawf and mhud folder.
+			<br><code>🔹minetest or luanti/games/capturetheflag/mods/ctf/ctf_map/maps </code>for maps.</p>
+			<div class="image-content2">
+            <img src="github.png" alt="github">
+			</div>
+		</div>
+		<div class="text-content">
+		    <h2>And finally via ContentDB online: <a href="https://content.luanti.org/packages/rubenwardy/capturetheflag/" target="_blank" class="link">Clic here</a></h2>
+            <p>Click on Download then unzip and put the downloaded folder in <code>minetest or luanti/games</code>.</p>
+			<div class="image-content2">
+            <img src="contentdb.png" alt="cdb">
+			</div>
+        </div>
+	</div>
+	    <div id="map" class="content">
+        <h1>Making a map</h1>
+        <p>Conseils pour la création de maps.</p>
+    </div>
+    <div id="advice" class="content">
+        <h1>Advice</h1>
+        <p>Conseils pour la création de maps.</p>
+    </div>
+    <div id="service1" class="content">
+        <h1>Worldedit</h1>
+					There are 3 ways to download Worldedit undo:<br><br>
+			🔹From minetest: ‘Content’ then ‘Browse online content’, then search for ‘worldedit undo’. Click on ‘Worldedit by sfan5’ and Install.<br>
+			<div class="image-content2">
+            <img src="dowloadminetestwe.png" alt="minetestwe">
+			</div>
+			🔹From the CDB: <a href="https://content.luanti.org/packages/sfan5/worldedit/ target="_blank" class="link">ContentDB Worldedit</a>, click on download then unzip the folder and put it in <code>minetest or luanti/mods</code><br>
+			<div class="image-content2">
+            <img src="contentdbwe.png" alt="cdbminetestwe">
+			</div>
+			🔹Or from Github: <a href="https://github.com/Uberi/Minetest-WorldEdit target="_blank" class="link">Github Worldedit undo</a>, click on "code" and "download zip" then download zip then unzip the folder and put it in <code>minetest or luanti/mods</code><p>
+			<div class="image-content2">
+            <img src="githubwe.png" alt="githubwe">
+			</div>
+			        <h1>There are a lot of commands with Worldedit, here is a list of the most useful ones</h1>
+
+		<p>🔹<code>//help [all/<cmd>]</code> Get help for WorldEdit commands. all shows all WorldEdit commands, <cmd> the help text for the given command.<br>
+		🔹<code>//pos1</code> or <code>//1</code> Set WorldEdit region position 1 to the player's location. <code>//pos2</code> or <code>//2</code> Set WorldEdit region position 2 to the player's location.<br>
+		🔹<code>//volume</code>Display the volume of the current WorldEdit region.<br>
+		🔹<code>//set &#139;node&#155; </code>Set the current WorldEdit region to &#139;node&#155;.<br>
+		🔹<code>//mix &#139node1&#155; [count1] &#139node2&#155; [count2] ...</code>Fill the current WorldEdit region with a random mix of &#139node1&#155;, &#139node2&#155;, <br>&emsp;&nbsp... Weightings can be optionally specified via the [count1], [count2], ... parameters after a node name.<br>
+		🔹<code>//replace &#139;search node&#155; &#139; replace node&#155;</code> Replace all instances of &#139;search node&#155; with &#139;replace node&#155; in the current WorldEdit region.<br>
+		🔹<code>//replaceinverse &#139;search node&#155; &#139; replace node&#155;</code> Replace all nodes other than &#139;search node&#155; with &#139;replace node&#155; in the current WorldEdit region.<br>
+		🔹<code>//replace &#139;search node&#155; &#139; replace node&#155;</code> Replace all instances of &#139;search node&#155; with &#139;replace node&#155; in the current WorldEdit region.<br>
+		🔹<code>//hollowcube &#139;width&#155; &#139;height&#155; &#139;length&#155; &#139;node&#155;</code> Adds a hollow cube with its ground level centered at WorldEdit position 1 with dimensions &#139;width&#155; x &#139;height&#155; x &#139;length&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//cube &#139;width&#155; &#139;height&#155; &#139;length&#155; &#139;node&#155;</code> Adds a cube with its ground level centered at WorldEdit position 1 with dimensions &#139;width&#155; x &#139;height&#155; x &#139;length&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//hollowsphere &#139;radius&#155; &#139;node&#155;</code> Add hollow sphere centered at WorldEdit position 1 with radius &#139;radius&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//sphere &#139;radius&#155; &#139;node&#155;</code> Add sphere centered at WorldEdit position 1 with radius &#139;radius&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//hollowdome &#139;radius&#155; &#139;node&#155;</code> Add hollow dome centered at WorldEdit position 1 with radius &#139;radius&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//dome &#139;radius&#155; &#139;node&#155;</code> Add dome centered at WorldEdit position 1 with radius &#139;radius&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//hollowcylinder &#139;x/y/z/?&#155; &#139;length&#155; &#139;radius1&#155; &#91;radius2&#93; &#139;node&#155;</code> Add hollow cylinder at WorldEdit position 1 along the given axis with length &#139;length&#155;, base radius &#139;radius1&#155; <br>&emsp;&nbsp(and top radius &#91;radius2&#93;), composed of &#139;node&#155;. <br>
+		🔹<code>//cylinder &#139;x/y/z/?&#155; &#139;length&#155; &#139;radius1&#155; &#91;radius2&#93; &#139;node&#155;</code> Add cylinder at WorldEdit position 1 along the given axis with length &#139;length&#155;, base radius &#139;radius1&#155; <br>&emsp;&nbsp(and top radius &#91;radius2&#93;), composed of &#139;node&#155;. <br>
+		🔹<code>//hollowpyramid &#139;x/y/z/?&#155; &#139;height&#155; &#139;node&#155;</code> Add hollow pyramid centered at WorldEdit position 1 along the given axis with height &#139;height&#155; composed of &#139;node&#155;. <br>
+		🔹<code>//pyramid &#139;x/y/z/?&#155; &#139;height&#155; &#139;node&#155;</code> Add pyramid centered at WorldEdit position 1 along the given axis with height &#139;height&#155; composed of &#139;node&#155;. <br>
+		🔹<code>//spiral &#139;length&#155; &#139;height&#155; &#139;spacer&#155; &#139;node&#155;</code> Add spiral centered at WorldEdit position 1 with side length &#139;length&#155;, height &#139;height&#155;, space between walls &#139;spacer&#155;, composed of &#139;node&#155;. <br>
+		🔹<code>//copy &#139;x/y/z/?&#155; &#139;amount&#155;</code> Copy the current WorldEdit region along the given axis by &#139;amount&#155; nodes. <br>
+		🔹<code>//move &#139;x/y/z/?&#155; &#139;amount&#155;</code> Move the current WorldEdit positions and region along the given axis by &#139;amount&#155; nodes. <br>
+		🔹<code>//stack &#139;x/y/z/?&#155; &#139;count&#155;</code> Stack the current WorldEdit region along the given axis &#139;count&#155; times. <br>
+		🔹<code>//transpose &#139;x/y/z/?&#155; &#139;x/y/z/?&#155;</code> Transpose the current WorldEdit positions and region along given axes. <br>
+		🔹<code>//flip &#139;x/y/z/?&#155;</code> Flip the current WorldEdit region along the given axis. <br>
+		🔹<code>//rotate &#139;x/y/z/?&#155; &#139;angle&#155;</code> Rotate the current WorldEdit positions and region along the given axis by angle &#139;angle&#155; (90 degree increment). <br>
+		🔹<code>//orient &#139;angle&#155;</code> Rotate oriented nodes in the current WorldEdit region around the Y axis by angle &#139;angle&#155; (90 degree increment). <br>
+		🔹<code>//fixlight</code> Fixes the lighting in the current WorldEdit region. <br>
+		🔹<code>//drain</code> Removes any fluid node within the current WorldEdit region. <br>
+		🔹<code>//clearcut</code> Removes any plant, tree or foliage-like nodes in the selected region. <br>
+		🔹<code>//save &#139;file&#155;</code> Save the current WorldEdit region to "(world folder)/schems/&#139;file&#155;.we". <br>
+		🔹<code>//load &#139;file&#155;</code> Load nodes from "(world folder)/schems/&#139;file&#155;.we" with position 1 of the current WorldEdit region as the origin. <br>
+		🔹<code>//mtschemcreate &#139;file&#155;</code> Save the current WorldEdit region using the Minetest Schematic format to "(world folder)/schems/&#139;file&#155;.mts". <br>
+		🔹<code>//mtschemplace &#139;file&#155; &#91;rotation&#93;</code> Load nodes from "(world folder)/schems/&#139;file&#155;.mts" with position 1 of the current WorldEdit region as the origin. <br>&emsp;&nbsp Valid values for [rotation] are 0, 90, 180, and 270. <br></p>
+    </div>
+    <div id="service2" class="content">
+        <h1>Worldedit Undo</h1>
+        <h2>Worldedit undo lets you go back on a command you've just done. </h2><br>
+		<p><strong>It's essential with Worldedit if you do something you don't want to, you can delete it.</strong><br><br>
+			There are 3 ways to download Worldedit undo:<br><br>
+			🔹From minetest: ‘Content’ then ‘Browse online content’, then search for ‘worldedit undo’. Click on ‘Worldedit undo by Hybrid Dog’ and Install.<br>
+			<div class="image-content2">
+            <img src="dowloadminetestweundo.png" alt="cdbweundo">
+			</div>
+			🔹From the CDB: <a href="https://content.luanti.org/packages/Hybrid%20Dog/we_undo/ target="_blank" class="link">ContentDB Worldedit undo</a>, click on download then unzip the folder and put it in <code>minetest or luanti/mods</code><br>
+			<div class="image-content2">
+            <img src="contentdbweundo.png" alt="cdbminetestweundo">
+			</div>
+			🔹Or from codeberg: <a href="https://codeberg.org/HybridDog/we_undo target="_blank" class="link">Codeberg Worldedit undo</a>, click on <code>...</code> then download zip then unzip the folder and put it in <code>minetest or luanti/mods</code><p>
+			<div class="image-content2">
+            <img src="codeberg.png" alt="codebergweundo">
+			</div>
+		<h2>The different commands:</h2>
+		<p>🔹<code>//undo</code> Allows you to go back an action, which can be executed several times in a row.<br>
+		🔹<code>//redo</code> Redo what was removed with <code>//undo</code>.<br>
+		🔹<code>//show_journal</code> Enables you to see what can be undone or redone </p>
+    </div>
+    <div id="service3" class="content">
+        <h1>Worldedit Additions</h1>
+        <p>Fonctionnalités supplémentaires de Worldedit.</p>
+    </div>
+    <div id="service4" class="content">
+        <h1>Worldedit HUD Helpler</h1>
+        <h2>Worldedit HUD Helper helps you with Worldedit commands by showing you the full name of the blocks and the axis you're looking at.</h2><br>
+			There are 3 ways to download Worldedit HUD Helper:<br><br>
+			🔹From minetest: ‘Content’ then ‘Browse online content’, then search for ‘worldedit hud helper’. Click on ‘worldedit HUD Helper by Starbeamrainbowlabs’ and Install.<br>
+			<div class="image-content2">
+            <img src="dowloadminetestwehud.png" alt="cdbweundo">
+			</div>
+			🔹From the CDB: <a href="https://content.luanti.org/packages/Starbeamrainbowlabs/worldedit_hud_helper/ target="_blank" class="link">ContentDB Worldedit HUD Helper</a>, click on download then unzip the folder and put it in <code>minetest or luanti/mods</code><br>
+			<div class="image-content2">
+            <img src="contentdbwehud.png" alt="cdbminetestweundo">
+			</div>
+			🔹Or from Gitlab: <a href="https://gitlab.com/sbrl/worldedit_hud_helper target="_blank" class="link">Gitlab Worldedit undo</a>, click on 'code' then download zip then unzip the folder and put it in <code>minetest or luanti/mods</code><p>
+			<div class="image-content2">
+            <img src="gitlabwehud.png" alt="codebergweundo">
+			</div>
+		<h2>The different commands:</h2>
+		<p>🔹<code>//hud</code> Toggles whether the HUD is shown or not.<br>
+		🔹<code>//hudoffset &#139;offset_in_pixels&#155;</code> Redo what was removed with <code>//undo</code>.<br>
+    </div>
+    <div id="service5" class="content">
+        <h1>Terraform</h1>
+        <p>Outils de terraformation.</p>
+    </div>
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('light-mode');
+            let btn = document.querySelector('.toggle-mode');
+            if (document.body.classList.contains('light-mode')) {
+                btn.textContent = '🌙 Mode Sombre';
+            } else {
+                btn.textContent = '☀️ Mode Clair';
+            }
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        window.onload = function() {
+            showTab('home');
+        };
+    </script>
+</body>
+</html>
